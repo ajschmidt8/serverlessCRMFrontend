@@ -72,6 +72,16 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/customers/c/:id" component={CustomerInfo} />
+              <Route
+                path="/customers/new"
+                render={props => (
+                  <CustomerInfo
+                    {...props}
+                    isEditable={true}
+                    titleDescriptor={"New"}
+                  />
+                )}
+              />
               <Route path="/customers" component={Customers} />
               <Route path="/sales" component={Sales} />
               <Redirect to="/" />

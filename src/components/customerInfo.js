@@ -28,6 +28,13 @@ const input = {
 };
 
 class customerInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditable: this.props.isEditable || false
+    };
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -37,7 +44,9 @@ class customerInfo extends Component {
         <Grid padded>
           <Grid.Column>
             <Container>
-              <Header as="h1">Add Customer</Header>
+              <Header as="h1">
+                {this.props.titleDescriptor || ""} Customer
+              </Header>
               <Segment>
                 <div style={inputContainer}>
                   <input style={input} type="text" placeholder="First Name" />
@@ -74,33 +83,44 @@ class customerInfo extends Component {
                   <Checkbox label="Subscribe to tuning reminders" />
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <Button
-                    content="Cancel"
-                    icon="cancel"
-                    labelPosition="right"
-                  />
-                  <Button
-                    content="Edit User"
-                    icon="pencil"
-                    labelPosition="right"
-                  />
-                  <Button
-                    content="Delete User"
-                    icon="trash alternate outline"
-                    color="red"
-                    labelPosition="right"
-                  />
-                  <Button
-                    content="Save User"
-                    icon="save"
-                    labelPosition="right"
-                  />
-                  <Button
-                    content="Save &amp; Invoice"
-                    color="green"
-                    icon="dollar"
-                    labelPosition="right"
-                  />
+                  {this.state.isEditable && (
+                    <Button
+                      content="Cancel"
+                      icon="cancel"
+                      labelPosition="right"
+                    />
+                  )}
+                  {this.state.isEditable && (
+                    <Button
+                      content="Save Customer"
+                      color="green"
+                      icon="save"
+                      labelPosition="right"
+                    />
+                  )}
+                  {!this.state.isEditable && (
+                    <Button
+                      content="Delete Customer"
+                      icon="trash alternate outline"
+                      color="red"
+                      labelPosition="right"
+                    />
+                  )}
+                  {!this.state.isEditable && (
+                    <Button
+                      content="Edit Customer"
+                      icon="pencil"
+                      labelPosition="right"
+                    />
+                  )}
+                  {!this.state.isEditable && (
+                    <Button
+                      content="Invoice Customer"
+                      color="green"
+                      icon="dollar"
+                      labelPosition="right"
+                    />
+                  )}
                 </div>
               </Segment>
             </Container>

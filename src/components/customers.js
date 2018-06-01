@@ -7,7 +7,7 @@ import {
   Table,
   Grid
 } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 import TopMenu from "./topMenu";
 import faker from "faker";
 import uuid from "uuid/v4";
@@ -107,12 +107,15 @@ class customers extends Component {
                 <Header as="h1" style={{ margin: 0 }}>
                   Customers
                 </Header>
-                <Button
-                  color="green"
-                  content="New Customer"
-                  icon="plus"
-                  labelPosition="right"
-                />
+
+                <NavLink to="/customers/new">
+                  <Button
+                    color="green"
+                    content="New Customer"
+                    icon="plus"
+                    labelPosition="right"
+                  />
+                </NavLink>
               </div>
 
               {this.state.isLoading && <p>Loading...</p>}
