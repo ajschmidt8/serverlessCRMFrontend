@@ -111,6 +111,11 @@ class customerInfo extends Component {
                       content="Edit Customer"
                       icon="pencil"
                       labelPosition="right"
+                      onClick={e => {
+                        this.setState((prevState, props) => ({
+                          isEditable: !prevState.isEditable
+                        }));
+                      }}
                     />
                   )}
                   {!this.state.isEditable && (
