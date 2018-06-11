@@ -9,8 +9,7 @@ import {
 } from "semantic-ui-react";
 import { withRouter, NavLink } from "react-router-dom";
 import TopMenu from "./topMenu";
-import faker from "faker";
-import uuid from "uuid/v4";
+import axios from "axios";
 
 class customers extends Component {
   constructor(props) {
@@ -23,29 +22,20 @@ class customers extends Component {
   }
 
   componentDidMount() {
-    const customers = [...Array(10)].map(() => {
-      return {
-        id: uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        address: faker.address.streetAddress(),
-        zipCode: faker.address.zipCode("#####"),
-        city: faker.address.city(),
-        state: faker.address.state(),
-        phone: faker.phone.phoneNumberFormat(),
-        email: faker.internet.email()
-      };
-    });
-
-    this.timer = setTimeout(() => {
-      this.setState((prevState, props) => {
-        return {
-          customers,
-          // customers: [],
-          isLoading: false
-        };
+    axios
+      .get(
+        "https://8m7pi1zat6.execute-api.us-east-1.amazonaws.com/dev/customers"
+      )
+      .then(resp => {
+        console.log(resp.data, "data!");
+        this.setState((prevState, props) => {
+          return {
+            customers: resp.data,
+            isLoading: false
+          };
+        });
+        return resp.data;
       });
-    }, 500);
   }
 
   componentWillUnmount() {
@@ -69,9 +59,9 @@ class customers extends Component {
         <Table.Body>
           {customers.map(customer => (
             <Table.Row
-              key={customer.id}
+              key={customer.customer_id}
               style={{ cursor: "pointer" }}
-              onClick={e => this.handleUserClick(customer.id, e)}
+              onClick={e => this.handleUserClick(customer.customer_id, e)}
             >
               <Table.Cell>
                 {`${customer.firstName} ${customer.lastName}`}
