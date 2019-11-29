@@ -24,7 +24,7 @@ class customers extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://8m7pi1zat6.execute-api.us-east-1.amazonaws.com/dev/customers"
+        "https://ja01v4wvc7.execute-api.us-east-1.amazonaws.com/dev/customers"
       )
       .then(resp => {
         console.log(resp.data, "data!");

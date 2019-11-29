@@ -74,7 +74,7 @@ class customerInfo extends Component {
 
     axios
       .post(
-        `https://8m7pi1zat6.execute-api.us-east-1.amazonaws.com/dev/customer/`,
+        `https://ja01v4wvc7.execute-api.us-east-1.amazonaws.com/dev/customer/`,
         qs.stringify(customerObj)
       )
       .then(resp => (window.location = "/customers"))
@@ -84,9 +84,7 @@ class customerInfo extends Component {
   handleDeleteClick() {
     axios
       .delete(
-        `https://8m7pi1zat6.execute-api.us-east-1.amazonaws.com/dev/customer/${
-          this.props.match.params.id
-        }`
+        `https://ja01v4wvc7.execute-api.us-east-1.amazonaws.com/dev/customer/${this.props.match.params.id}`
       )
       .then(resp => (window.location = "/customers"));
   }
@@ -95,9 +93,7 @@ class customerInfo extends Component {
     this.props.match.params.id
       ? axios
           .get(
-            `https://8m7pi1zat6.execute-api.us-east-1.amazonaws.com/dev/customer/${
-              this.props.match.params.id
-            }`
+            `https://ja01v4wvc7.execute-api.us-east-1.amazonaws.com/dev/customer/${this.props.match.params.id}`
           )
           .then(resp => {
             console.log(resp.data[0], "data!");
