@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "natives": "^1.1.6",
     "qs": "^6.5.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
